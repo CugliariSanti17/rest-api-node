@@ -64,7 +64,7 @@ const products = [
 
 export const getAllProducts = (req, res) => {
     res.json(products)
-}
+};
 
 export const getProductById = (req, res) => {
     const { id } = req.params
@@ -76,7 +76,7 @@ export const getProductById = (req, res) => {
     }
 
     res.json(product)
-}
+};
 
 export const postProduct = (req, res) => {
     const { nombre, precio, descripcion } = req.body
@@ -90,7 +90,7 @@ export const postProduct = (req, res) => {
 
     product.push(products)
     res.status(201).send(`Producto guardado: ${product}`)
-}
+};
 
 export const putProduct = (req, res) => {
     const productId = parseInt(req.params.id, 10)
@@ -104,7 +104,7 @@ export const putProduct = (req, res) => {
 
     products[productIndex] = { nombre: nombre, precio: precio, descripcion: descripcion }
     res.send(`Producto modificado: ${products[productIndex]}`)
-}
+};
 
 export const deleteProduct = (req, res) => {
     const productId = parseInt(req.params.id, 10)
@@ -118,4 +118,4 @@ export const deleteProduct = (req, res) => {
 
     const deletedProduct = products.splice(productIndex, 1)
     res.status(200).json(deletedProduct)
-}
+};
