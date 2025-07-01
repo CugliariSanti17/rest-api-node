@@ -46,6 +46,16 @@ const renderizarProductos = (productos) => {
             })
         })
     })
+
+    const botonEditar = document.querySelectorAll('.editar-btn')
+
+    botonEditar.forEach((btn) =>{
+        btn.addEventListener('click', () =>{
+            const id = btn.getAttribute('data-id')
+
+            window.location.href = `editarProducto.html?id=${id}`
+        })
+    })
 };
 
 fetch(API_URL)

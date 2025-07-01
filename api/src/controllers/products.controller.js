@@ -97,13 +97,13 @@ export const putProduct = (req, res) => {
     const productIndex = products.findIndex((product) => product.id == productId)
 
     if (productIndex === -1) {
-        res.status(404).json({ error: 'El producto no fue encontrado' })
+        return res.status(404).json({ error: 'El producto no fue encontrado' })
     }
 
     const { nombre, precio, descripcion } = req.body
 
-    products[productIndex] = { nombre: nombre, precio: precio, descripcion: descripcion }
-    res.send(`Producto modificado: ${products[productIndex]}`)
+    products[productIndex] = {...products[productIndex], nombre: nombre, precio: precio, descripcion: descripcion }
+    res.json(products[productIndex])
 };
 
 export const deleteProduct = (req, res) => {
