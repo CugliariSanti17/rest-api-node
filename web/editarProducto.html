@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
+    <link rel="stylesheet" href="./css/stylesEditar.css">
 </head>
 
 <body>
@@ -13,22 +14,22 @@
     <form id="formEditar">
         <label for="nombre">Nombre:
             <input type="text" id="nombre" required />
-        </label><br><br>
+        </label>
 
         <label for="precio">Precio:
             <input type="number" id="precio" required />
-        </label><br><br>
+        </label>
 
         <label for="descripcion">Descripción:
             <textarea id="descripcion" required></textarea>
-        </label><br><br>
+        </label>
 
         <button type="submit">Guardar Cambios</button>
     </form>
 
     <p id="mensaje"></p>
 
-    <script src="editar.js"></script>
+    <script src="./editar.js"></script>
 </body>
 
 </html>
