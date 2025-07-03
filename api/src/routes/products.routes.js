@@ -4,19 +4,19 @@ import { body } from 'express-validator';
 
 const router = Router()
 
-//const rules = [
-//    body('nombre').notEmpty().withMessage('El campo Nombre es obligatorio'),
-//    body('precio').notEmpty().withMessage('El campo Precio es obligatorio'),
-//    body('descripcion').notEmpty.isLength({min: 10}).withMessage('El campo descripcion debe tener al menos 10 caracteres')
-//]
+const rules = [
+    body('nombre').escape().notEmpty().withMessage('El nombre es obligatorio').bail().isLength({min: 3}).withMessage('El nombre debe tener al menos 3 caracteres'),
+    body('precio').escape().notEmpty().withMessage('El precio es obligatorio').bail().isNumeric().withMessage('El precio debe ser un número'),
+    body('descripcion').escape().notEmpty().withMessage('La descripcion es obligatorio').bail().isLength({min: 10}).withMessage('La descripcion debe tener al menos 10 caracteres')
+]
 
 router.get('/products', getAllProducts);
 
 router.get('/products/:id', getProductById);
 
-router.post('/products', postProduct);
+router.post('/products', rules, postProduct);
 
-router.put('/products/:id', putProduct);
+router.put('/products/:id', rules, putProduct);
 
 router.delete('/products/:id', deleteProduct);
 

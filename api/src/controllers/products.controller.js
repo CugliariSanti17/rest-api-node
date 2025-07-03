@@ -1,3 +1,6 @@
+import { validationResult } from 'express-validator';
+
+export {validationResult} from 'express-validator'
 
 const products = [
     {
@@ -79,8 +82,14 @@ export const getProductById = (req, res) => {
 };
 
 export const postProduct = (req, res) => {
-    const { nombre, precio, descripcion } = req.body
+    const result = validationResult(req)
 
+    if (!result.isEmpty()){
+        return res.status(422).json({errores: result.array()})
+    }
+
+    const { nombre, precio, descripcion } = req.body
+    
     const product = {
         id: products.length + 1,
         nombre: nombre,
@@ -93,6 +102,12 @@ export const postProduct = (req, res) => {
 };
 
 export const putProduct = (req, res) => {
+    const result = validationResult(req)
+
+    if(!result.isEmpty()){
+        return res.status(422).json({errores: result.array()})
+    }
+
     const productId = parseInt(req.params.id, 10)
     const productIndex = products.findIndex((product) => product.id == productId)
 

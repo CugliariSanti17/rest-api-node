@@ -6,7 +6,7 @@ const precio = document.getElementById('precioProducto');
 const descripcion = document.getElementById('descripcionProducto');
 const mensaje = document.getElementById('mensajeCrearProducto');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault()
 
     const nuevoProducto = {
@@ -15,28 +15,40 @@ form.addEventListener('submit', (e) => {
         descripcion: descripcion.value.trim()
     }
 
-    fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(nuevoProducto)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data){
-            mensaje.textContent = 'Producto creado correctamente';
-            mensaje.style.color = 'green'
-            form.reset();
-
-            setTimeout(() => {
-                window.location.href = 'index.html'
-            }, 1000);
-        }
-    })
-    .catch(error =>{
-        mensaje.textContent = 'Error al conectar con el servidor';
-        mensaje.style.color = 'red'
-        console.error(`Error al crear el producto: ${error}`)
+    try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(nuevoProducto)
     });
-})
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      // Si el servidor responde con errores de validación
+      if (data.errores) {
+        mensaje.textContent = data.errores.map(error => error.msg).join(' | ');
+      } else {
+        mensaje.textContent = 'Error al crear producto';
+      }
+      mensaje.style.color = 'red';
+      return;
+    }
+
+    // Producto creado exitosamente
+    mensaje.textContent = 'Producto creado correctamente';
+    mensaje.style.color = 'green';
+    form.reset();
+
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1000);
+
+  } catch (error) {
+    mensaje.textContent = 'Error al conectar con el servidor';
+    mensaje.style.color = 'red';
+    console.error(error);
+  }
+});
