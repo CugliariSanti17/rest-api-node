@@ -18,7 +18,7 @@ fetch(`${API_URL}/${id}`)
 .catch(error =>{
     mensaje.textContent = 'Error al cargar el producto';
     console.error(error)
-})
+});
 
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
@@ -39,6 +39,7 @@ form.addEventListener('submit', (e) =>{
     .then(res => res.json())
     .then(() =>{
         mensaje.textContent = 'Producto actualizado correctamente'
+        mensaje.style.color = 'green'
 
         setTimeout(() => {
             window.location.href = "index.html"
@@ -46,6 +47,7 @@ form.addEventListener('submit', (e) =>{
     })
     .catch(error =>{
         mensaje.textContent = 'Error al actualizar el producto';
+        mensaje.style.color = 'red'
         console.error(error)
     });
 });

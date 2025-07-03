@@ -6,15 +6,18 @@
     <title>Publicar Productos</title>
 </head>
 <body>
-    <form action="" method="POST" class="productsForm">
+    <form class="productsForm" id="formPublicar">
        <label for="nombreProducto">Nombre:</label> 
        <input type="text" name="Nombre" id="nombreProducto">
        <label for="descripcionProducto">Descripcion:</label>
        <input type="text" name="Descripcion" id="descripcionProducto">
        <label for="precioProducto">Precio:</label>
        <input type="text" name="Precio" id="precioProducto">
+       <button type="submit">Crear producto</button>
     </form>
 
-    <script src="./script.js"></script>
+    <p id="mensajeCrearProducto"></p>
+
+    <script src="./agregar.js"></script>
 </body>
 </html>

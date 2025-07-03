@@ -88,8 +88,8 @@ export const postProduct = (req, res) => {
         descripcion: descripcion
     }
 
-    product.push(products)
-    res.status(201).send(`Producto guardado: ${product}`)
+    products.push(product)
+    res.status(201).json(product)
 };
 
 export const putProduct = (req, res) => {
