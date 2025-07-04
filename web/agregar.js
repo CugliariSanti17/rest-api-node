@@ -26,6 +26,7 @@ form.addEventListener('submit', async (e) => {
 
     const data = await res.json();
 
+    //Producto con errores
     if (!res.ok) {
       // Si el servidor responde con errores de validación
       if (data.errores) {
@@ -35,9 +36,9 @@ form.addEventListener('submit', async (e) => {
       }
       mensaje.style.color = 'red';
       return;
-    }
+    };
 
-    // Producto creado exitosamente
+    //Producto creado
     mensaje.textContent = 'Producto creado correctamente';
     mensaje.style.color = 'green';
     form.reset();
@@ -46,7 +47,7 @@ form.addEventListener('submit', async (e) => {
       window.location.href = 'index.html';
     }, 1000);
 
-  } catch (error) {
+  }catch (error) {
     mensaje.textContent = 'Error al conectar con el servidor';
     mensaje.style.color = 'red';
     console.error(error);

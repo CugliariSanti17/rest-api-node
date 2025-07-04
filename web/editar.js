@@ -9,18 +9,18 @@ const descripcion = document.getElementById('descripcion')
 const mensaje = document.getElementById('mensaje')
 
 fetch(`${API_URL}/${id}`)
-.then(res => res.json())
-.then(data =>{
-    nombre.value = data.nombre;
-    precio.value = data.precio;
-    descripcion.value = data.descripcion;
-})
-.catch(error =>{
-    mensaje.textContent = 'Error al cargar el producto';
-    console.error(error)
-});
+    .then(res => res.json())
+    .then(data => {
+        nombre.value = data.nombre;
+        precio.value = data.precio;
+        descripcion.value = data.descripcion;
+    })
+    .catch(error => {
+        mensaje.textContent = 'Error al cargar el producto';
+        console.error(error)
+    });
 
-form.addEventListener('submit', (e) =>{
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const productoActualizado = {
@@ -29,25 +29,38 @@ form.addEventListener('submit', (e) =>{
         descripcion: descripcion.value
     };
 
-    fetch(`${API_URL}/${id}`, {
-        method: 'PUT',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productoActualizado)
-    })
-    .then(res => res.json())
-    .then(() =>{
-        mensaje.textContent = 'Producto actualizado correctamente'
-        mensaje.style.color = 'green'
+    try {
+        const res = await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(productoActualizado)
+        });
+
+        const data = await res.json();
+
+        //Producto con errores
+        if (!res.ok) {
+            if (data.errores) {
+                mensaje.textContent = data.errores.map(error => error.msg).join(' | ');
+            } else {
+                mensaje.textContent = 'Error al actualizar el producto';
+            }
+            mensaje.style.color = 'red';
+            return;
+        };
+
+        //Producto creado
+        mensaje.textContent = 'Producto actualizado correctamente';
+        mensaje.style.color = 'green';
+        form.reset();
 
         setTimeout(() => {
-            window.location.href = "index.html"
+            window.location.href = 'index.html';
         }, 1000);
-    })
-    .catch(error =>{
-        mensaje.textContent = 'Error al actualizar el producto';
-        mensaje.style.color = 'red'
-        console.error(error)
-    });
+
+    }catch (error) {
+        mensaje.textContent = 'Error al conectar con el servidor';
+        mensaje.style.color = 'red';
+        console.error(error);
+    }
 });
