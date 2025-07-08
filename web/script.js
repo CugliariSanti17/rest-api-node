@@ -13,8 +13,11 @@ const renderizarProductos = (productos) => {
             <h3>${producto.nombre}</h3>
             <p>${producto.descripcion}</p>
             <strong>$${producto.precio}</strong>
-            <button class="eliminar-btn" data-id="${producto.id}">Eliminar</button>
-            <button class="editar-btn" data-id="${producto.id}">Editar</button>
+            <div class="botonesContainer">
+                <button class="eliminar-btn" data-id="${producto.id}">Eliminar</button>
+                <button class="editar-btn" data-id="${producto.id}">Editar</button>
+            </div>
+            <button class="detalle-btn" data-id="${producto.id}">Ver mas detalles</button>
         `
 
         contenedorProductos.appendChild(div);
@@ -56,7 +59,18 @@ const renderizarProductos = (productos) => {
             window.location.href = `editarProducto.html?id=${id}`
         })
     })
+
+    const botonDetalle = document.querySelectorAll('.detalle-btn')
+
+    botonDetalle.forEach((btn) =>{
+        btn.addEventListener('click', () =>{
+            const id = btn.getAttribute('data-id')
+
+            window.location.href = `verDetalle.html?id=${id}`
+        })
+    })
 };
+
 
 fetch(API_URL)
     .then((res) => res.json())

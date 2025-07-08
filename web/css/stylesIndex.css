@@ -128,7 +128,6 @@ button {
   background-color: #0056b3;
 }
 
-/* Botón Agregar producto */
 .publicarContainer .agregar-btn {
   background-color: #28a745;
   color: white;
@@ -142,4 +141,22 @@ button {
 
 .publicarContainer .agregar-btn:hover {
   background-color: #218838;
+}
+
+.detalle-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.detalle-btn:hover {
+  background-color: #1e7e34;
 }
