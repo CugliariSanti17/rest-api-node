@@ -25,9 +25,9 @@ export const getAllProducts = async () =>{
 export const getProductById = async (id) =>{
     try {
         const productRef = doc(productsCollection, id)
-        const snapshot = await getDocs(productsCollection)
+        const snapshot = await getDoc(productRef)
 
-        return snapshot.exists() ? {id: snapshot.id, ...snapshot.data()} : null
+        return snapshot.exists() ? {id: snapshot.id, ...snapshot.data()} : null;
     } catch (error) {
         console.error(error)
     }

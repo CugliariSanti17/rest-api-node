@@ -1,4 +1,4 @@
-import {model} from '../models/products.model.js'
+import * as model from '../models/products.model.js'
 export {validationResult} from 'express-validator';
 
 const products = [
@@ -75,14 +75,14 @@ const products = [
 ];
 
 export const getAllProducts = async (req, res) => {
-  const products = model.getAllProducts()
+  const products = await model.getAllProducts()
   res.json(products)
 };
 
 export const getProductById = async (req, res) => {
     const { id } = req.params
 
-    const product = model.getProductById(id)
+    const product = await model.getProductById(id)
 
     if (!product) {
         res.status(404).json({ error: 'Error al encontrar el producto.' })
@@ -92,54 +92,46 @@ export const getProductById = async (req, res) => {
 };
 
 export const postProduct = async (req, res) => {
-  const result = validationResult(req)
+  const result = validationResult(req); 
 
   if (!result.isEmpty()){
     return res.status(422).json({errores: result.array()})
+  };
+
+  const { nombre, precio, descripcion } = req.body;
+    
+  const newProduct = await model.postProduct({nombre, precio, descripcion});
+   
+  res.status(201).json(newProduct);
+};
+
+export const putProduct = async (req, res) => {
+  const result = validationResult(req)
+
+  if(!result.isEmpty()){
+      return res.status(422).json({errores: result.array()})
   }
 
   const { nombre, precio, descripcion } = req.body
-    
-  const product = await model.postProduct(nombre, precio, descripcion)
-   
-  //const product = {
-  //   id: products.length + 1,
-  //    nombre: nombre,
-  //    precio: precio,
-  //    descripcion: descripcion
-  //}
-
-  //products.push(product)
-  res.status(201).json(product)
-};
-
-export const putProduct = (req, res) => {
-    const result = validationResult(req)
-
-    if(!result.isEmpty()){
-        return res.status(422).json({errores: result.array()})
-    }
-
-    const { nombre, precio, descripcion } = req.body
-
-    const productId = req.params.id
-    const product = model.putProduct(productId, {nombre, precio, descripcion})
-
-    if(!product){
-      res.status(404).json({error: 'Error al crear el producto'})
-    }
-    
-    res.json(product)
-};
-
-export const deleteProduct = (req, res) => {
   const productId = req.params.id
 
-  const deletedProduct = model.deleteProduct(productId)
+  const product = await model.putProduct(productId, {nombre, precio, descripcion})
+
+  if(!product){
+    res.status(404).json({error: 'Error al crear el producto'})
+  }
+    
+  res.json(product)
+};
+
+export const deleteProduct = async (req, res) => {
+  const productId = req.params.id
+
+  const deletedProduct = await model.deleteProduct(productId)
 
   if (!deletedProduct) {
-    res.status(404).json({ error: 'El producto no fue encontrado' })
+    return res.status(404).json({ error: 'El producto no fue encontrado' })
   }
 
-  res.status(200).json(deletedProduct)
+  res.status(204).json(deletedProduct)
 };
