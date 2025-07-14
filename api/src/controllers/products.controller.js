@@ -1,7 +1,7 @@
-import * as model from '../models/products.model.js'
+import * as Model from '../models/products.model.js'
 export {validationResult} from 'express-validator';
 
-const products = [
+/*const products = [
   {
     id: 1,
     nombre: "Camiseta básica",
@@ -72,17 +72,17 @@ const products = [
     descripcion: "Cargador compatible con carga rápida 18W para dispositivos Android y iOS.",
     categoria: ["tecnología", "accesorios"]
   }
-];
+];*/
 
 export const getAllProducts = async (req, res) => {
-  const products = await model.getAllProducts()
+  const products = await Model.getAllProducts()
   res.json(products)
 };
 
 export const getProductById = async (req, res) => {
     const { id } = req.params
 
-    const product = await model.getProductById(id)
+    const product = await Model.getProductById(id)
 
     if (!product) {
         res.status(404).json({ error: 'Error al encontrar el producto.' })
@@ -100,7 +100,7 @@ export const postProduct = async (req, res) => {
 
   const { nombre, precio, descripcion } = req.body;
     
-  const newProduct = await model.postProduct({nombre, precio, descripcion});
+  const newProduct = await Model.postProduct({nombre, precio, descripcion});
    
   res.status(201).json(newProduct);
 };
@@ -115,7 +115,7 @@ export const putProduct = async (req, res) => {
   const { nombre, precio, descripcion } = req.body
   const productId = req.params.id
 
-  const product = await model.putProduct(productId, {nombre, precio, descripcion})
+  const product = await Model.putProduct(productId, {nombre, precio, descripcion})
 
   if(!product){
     res.status(404).json({error: 'Error al crear el producto'})
@@ -127,7 +127,7 @@ export const putProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   const productId = req.params.id
 
-  const deletedProduct = await model.deleteProduct(productId)
+  const deletedProduct = await Model.deleteProduct(productId)
 
   if (!deletedProduct) {
     return res.status(404).json({ error: 'El producto no fue encontrado' })
