@@ -75,10 +75,10 @@ npm run dev
 
 - **GET** `/api/products/:id`
 - **Descripcion:** Devuelve un producto específico por su ID.
--**Parámetros:** 
+- **Parámetros:** 
     - `id` (path, requerido): ID del producto.
--**Ejemplo de uso:** `/api/products/oY3K7Wzkcx2kEIzvPQoq`
--**Respuesta de ejemplo:**
+- **Ejemplo de uso:** `/api/products/oY3K7Wzkcx2kEIzvPQoq`
+- **Respuesta de ejemplo:**
 
 ```json
 [
