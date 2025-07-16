@@ -91,3 +91,34 @@ npm run dev
     }
 ]
 ```
+
+### Crear un producto
+
+- **POST** `/api/products`
+- **Descripción:** Crea un nuevo producto.
+- **Body (JSON):**
+
+```json
+[
+    {
+        "nombre": "Camiseta básica",
+        "precio": 4500,
+        "descripcion": "Camiseta de algodón 100% con corte clásico, disponible en varios colores.",
+        "categoria": ["ropa", "básicos"]
+    }
+]
+```
+
+- **Respuesta de ejemplo:**
+
+```json
+[
+    {
+        "id": "oY3K7Wzkcx2kEIzvPQoq" ,
+        "nombre": "Camiseta básica",
+        "precio": 4500,
+        "descripcion": "Camiseta de algodón 100% con corte clásico, disponible en varios colores.",
+        "categoria": ["ropa", "básicos"]
+    }
+]
+```
