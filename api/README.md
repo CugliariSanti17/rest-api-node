@@ -122,3 +122,24 @@ npm run dev
     }
 ]
 ```
+
+### Eliminar un producto
+
+- **DELETE** `/api/products/:id`
+- **Descripcion:** Elimina un producto por su ID.
+- **Parámetros:**
+    - `id` (path, requerido): ID del producto a eliminar
+- **Ejemplo de uso:** `/api/products/oY3K7Wzkcx2kEIzvPQoq`
+- **Respuesta de ejemplo:**
+
+```json
+[
+    {
+        "id": "oY3K7Wzkcx2kEIzvPQoq" ,
+        "nombre": "Camiseta básica",
+        "precio": 4500,
+        "descripcion": "Camiseta de algodón 100% con corte clásico, disponible en varios colores.",
+        "categoria": ["ropa", "básicos"]
+    }
+]
+```
