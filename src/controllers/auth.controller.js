@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { validationResult } from "express-validator";
 
 const default_user = {
     id: 1,
@@ -7,6 +8,12 @@ const default_user = {
 }
 
 export const login = (req, res) =>{
+    result = validationResult(req);
+
+    if (!result.isEmpty()){
+        return res.status(422).json({errores: result.array()})
+    }
+    
     const { email, password } = req.body
 
     const user = {id: 1}

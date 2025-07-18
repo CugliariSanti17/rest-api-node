@@ -5,17 +5,19 @@ import cors from 'cors';
 const app = express();
 
 //Configuración Básica
+
 app.use(express.json());
 app.use(cors());
 
 //Rutas
+
 app.get('/', (req, res) =>{
   res.send('Bienvenido a la API REST')
 });
 
-
+import { auth } from '../middlewares/auth.middleware.js';
 import productsRouter from './src/routes/products.routes.js';
-app.use('/api', productsRouter);
+app.use('/api', auth, productsRouter);
 
 import authRouter from './src/routes/auth.routes.js'
 app.use('/api', authRouter);
