@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import productsRouter from './src/routes/products.routes.js';
-
 
 const app = express();
 
@@ -10,13 +8,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
 //Rutas
 app.get('/', (req, res) =>{
   res.send('Bienvenido a la API REST')
 });
 
-app.use('/api', productsRouter);
+import { auth } from './src/middlewares/auth.middleware.js';
+import productsRouter from './src/routes/products.routes.js';
+app.use('/api', auth, productsRouter);
+
+import authRouter from './src/routes/auth.routes.js'
+app.use('/api', authRouter);
 
 //Middleware para manejo de errores
 app.use('/', (req, res) =>{
