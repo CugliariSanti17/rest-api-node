@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { getAllProducts, getProductById, postProduct, putProduct, deleteProduct } from '../controllers/products.controller.js';
 import { body } from 'express-validator';
-
+import { auth } from './src/middlewares/auth.middleware.js';
 const router = Router()
 
 const rules = [
@@ -15,10 +15,10 @@ router.get('/products', getAllProducts);
 
 router.get('/products/:id', getProductById);
 
-router.post('/products', rules, postProduct);
+router.post('/products', rules, auth, postProduct);
 
-router.put('/products/:id', rules, putProduct);
+router.put('/products/:id', rules, auth, putProduct);
 
-router.delete('/products/:id', deleteProduct);
+router.delete('/products/:id', auth, deleteProduct);
 
 export default router;
