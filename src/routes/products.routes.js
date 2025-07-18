@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { getAllProducts, getProductById, postProduct, putProduct, deleteProduct } from '../controllers/products.controller.js';
 import { body } from 'express-validator';
-import { auth } from './src/middlewares/auth.middleware.js';
+import { auth } from '../middlewares/auth.middleware.js';
 const router = Router()
 
 const rules = [
