@@ -11,14 +11,16 @@ const rules = [
     body('stock').escape().notEmpty().withMessage('El stock es obligatorio').bail().isNumeric().withMessage('El stock debe ser un numero').bail().isFloat({min: 0.00001}).withMessage('El stock debe ser positivo o mayor a 0')
 ]
 
-router.get('/products', getAllProducts);
+import { auth } from '../middlewares/auth.middleware.js';
 
-router.get('/products/:id', getProductById);
+router.get('/products', auth, getAllProducts);
 
-router.post('/products', rules, postProduct);
+router.get('/products/:id', auth, getProductById);
 
-router.put('/products/:id', rules, putProduct);
+router.post('/products', auth, rules, postProduct);
 
-router.delete('/products/:id', deleteProduct);
+router.put('/products/:id', auth, rules, putProduct);
+
+router.delete('/products/:id', auth, deleteProduct);
 
 export default router;

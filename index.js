@@ -15,9 +15,8 @@ app.get('/', (req, res) =>{
   res.send('Bienvenido a la API REST')
 });
 
-import { auth } from './src/middlewares/auth.middleware.js';
 import productsRouter from './src/routes/products.routes.js';
-app.use('/api', auth, productsRouter);
+app.use('/api', productsRouter);
 
 import authRouter from './src/routes/auth.routes.js'
 app.use('/api', authRouter);
