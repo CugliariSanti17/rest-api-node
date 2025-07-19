@@ -25,12 +25,12 @@ npm run dev
 
 ---
 
-## Documentacion de la API
+## Documentación de la API
 
 ### Obtener todos los productos
 
 - **GET** `/api/products`
-- **Descripcion:** Devuelve la lista de todos los productos.
+- **Descripción:** Devuelve la lista de todos los productos.
 - **Respuesta de ejemplo:**
 
 ```json
@@ -56,7 +56,7 @@ npm run dev
 ### Buscar productos por nombre
 
 - **GET** `/api/products/search?nombre=palabra`
-- **Descripcion:** Devuelve los productos cuyo nombre contiene la palabra indicada.
+- **Descripción:** Devuelve los productos cuyo nombre contiene la palabra indicada.
 - **Parámetros:**
     - `name` (query, requerido): texto a buscar en el nombre del producto.
 - **Ejemplos de uso:** `/api/products/search?nombre=camiseta`
@@ -78,7 +78,7 @@ npm run dev
 ### Obtener producto por ID
 
 - **GET** `/api/products/:id`
-- **Descripcion:** Devuelve un producto específico por su ID.
+- **Descripción:** Devuelve un producto específico por su ID.
 - **Parámetros:** 
     - `id` (path, requerido): ID del producto.
 - **Ejemplo de uso:** `/api/products/oY3K7Wzkcx2kEIzvPQoq`
@@ -132,7 +132,7 @@ npm run dev
 ### Eliminar un producto
 
 - **DELETE** `/api/products/:id`
-- **Descripcion:** Elimina un producto por su ID.
+- **Descripción:** Elimina un producto por su ID.
 - **Parámetros:**
     - `id` (path, requerido): ID del producto a eliminar
 - **Ejemplo de uso:** `/api/products/oY3K7Wzkcx2kEIzvPQoq`
@@ -153,7 +153,7 @@ npm run dev
 
 ### Actualizar un producto (PUT)
 - **PUT** `/api/products/:id`
-- **Descripcion:** Actualiza completamente un producto existente
+- **Descripción:** Actualiza completamente un producto existente
 - **Parámetros**
     - `id` (path, requerido): ID del producto a actualizar.
 - **Body (JSON):**
@@ -184,7 +184,7 @@ npm run dev
 ```
 
 > ⚠️ **Importante:** ⚠️ 
-> Si dejas algunos de los campos vacios a la hora de actualizar un producto, estos seran borrados del documento.
+> Si dejás algunos de los campos vacios a la hora de actualizar un producto, estos serán borrados del documento.
 
 ---
 
@@ -193,7 +193,7 @@ npm run dev
 ### Login
 
 - **POST** `/api/login`
-- **Descripcion:** Se enviará un email y una contraseña para controlar que el usuario este verificado. Si ambas son correctas se devolverá un token que permite al usuario acceder a aquellas rutas que necesitan autorización.
+- **Descripción:** Se enviará un email y una contraseña para controlar que el usuario esté verificado. Si ambas, tanto email como contraseña, son correctas se devolverá un token que permite al usuario acceder a aquellas rutas que necesitan autorización.
 - **Body (JSON):**
 
 ```json
@@ -219,7 +219,7 @@ npm run dev
 ## ¿Cómo usar el token en POSTMAN?
 
 - **Pasos a seguir:**
-- `1-` Una vez obtenido el token dirigirnos al apartado de *Authorization*.
+- `1-` Una vez obtenido el token, debemos dirigirnos al apartado de *Authorization*.
 - `2-` Seleccionar el tipo *Bearer Token*,
 - `3-` Copiar el token obtenido en el apartado *Token*.
 - `4-` Se agregará  automáticamente el token en el *header* de cada petición. 
