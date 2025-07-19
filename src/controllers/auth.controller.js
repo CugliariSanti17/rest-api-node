@@ -3,12 +3,12 @@ import { validationResult } from "express-validator";
 
 const default_user = {
     id: 1,
-    email: 'x@x.com',
-    password: '1234'
+    email: 'user@gmail.com',
+    password: 'talentotech'
 }
 
 export const login = (req, res) =>{
-    result = validationResult(req);
+    const result = validationResult(req);
 
     if (!result.isEmpty()){
         return res.status(422).json({errores: result.array()})
