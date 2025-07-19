@@ -18,7 +18,7 @@ export const login = (req, res) =>{
 
     const user = {id: 1}
 
-    if (email.toLowerCase() == default_user.email && password.toLowerCase() == default_user.password){
+    if (email.toLowerCase() === default_user.email && password === default_user.password){
         const payload = { user };
         const expiration = { expiresIn: '1h' }
 
