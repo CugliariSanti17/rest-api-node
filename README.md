@@ -23,6 +23,8 @@ Luego de editar el archivo `.env` con los valores correspondientes para tu entor
 npm run dev
 ```
 
+---
+
 ## Documentacion de la API
 
 ### Obtener todos los productos
@@ -49,6 +51,7 @@ npm run dev
   }
 ]
 ```
+---
 
 ### Buscar productos por nombre
 
@@ -70,6 +73,7 @@ npm run dev
     }
 ]
 ```
+---
 
 ### Obtener producto por ID
 
@@ -91,6 +95,7 @@ npm run dev
     }
 ]
 ```
+---
 
 ### Crear un producto
 
@@ -122,6 +127,7 @@ npm run dev
     }
 ]
 ```
+---
 
 ### Eliminar un producto
 
@@ -143,3 +149,78 @@ npm run dev
     }
 ]
 ```
+---
+
+### Actualizar un producto (PUT)
+- **PUT** `/api/products/:id`
+- **Descripcion:** Actualiza completamente un producto existente
+- **Parámetros**
+    - `id` (path, requerido): ID del producto a actualizar.
+- **Body (JSON):**
+
+```json
+[
+    {
+        "nombre": "Camiseta básica actualizada",
+        "precio": 4500,
+        "descripcion": "Camiseta de algodón 100% con corte clásico, disponible en varios colores.",
+        "categoria": ["ropa", "básicos"]
+    }
+]
+```
+
+-**Respuesta de ejemplo:**
+
+```json
+[
+    {
+        "id": "oY3K7Wzkcx2kEIzvPQoq",
+        "nombre": "Camiseta básica actualizada",
+        "precio": 4500,
+        "descripcion": "Camiseta de algodón 100% con corte clásico, disponible en varios colores.",
+        "categoria": ["ropa", "básicos"]
+    }
+]
+```
+
+> ⚠️ **Importante:** ⚠️ 
+> Si dejas algunos de los campos vacios a la hora de actualizar un producto, estos seran borrados del documento.
+
+---
+
+## Codigos de estado
+
+- `200` - OK: Operación exitosa
+- `201` - Created: Recurso creado exitosamente
+- `204` - No Content: Recurso eliminado exitosamente
+- `400` - Bad Request: Datos de entrada inválidos
+- `401` -
+- `403` -
+- `404` - Not Found: Recurso no encontrado
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+├── Controllers/
+│   └── products.controller.js
+│ 
+├── Models/
+│   └── products.model.js
+└── Routes/
+    └── products.router.js
+
+```
+
+## Tecnologías utilizadas
+
+- Node.js
+- Express.js
+- Express validator
+- Cors
+- Json Web Tokens (JWT)
+- Firestore y Firebase
+- Dotenv
+- ES6 Modules
