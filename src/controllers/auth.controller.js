@@ -26,6 +26,6 @@ export const login = (req, res) =>{
 
         res.json({token})
     }else{
-        return res.sendStatus(401);
+        return res.status(401).json({error: 'Token no proporcionado'});
     }
 }
