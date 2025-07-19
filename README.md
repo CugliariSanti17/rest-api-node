@@ -229,13 +229,13 @@ npm run dev
 ---
 ## Codigos de estado
 
-- `200` - OK: Operación exitosa
-- `201` - Created: Recurso creado exitosamente
-- `204` - No Content: Recurso eliminado exitosamente
-- `400` - Bad Request: Datos de entrada inválidos
-- `401` -
-- `403` -
-- `404` - Not Found: Recurso no encontrado
+- `200` - OK: Operación exitosa.
+- `201` - Created: Recurso creado exitosamente.
+- `204` - No Content: Recurso eliminado exitosamente.
+- `400` - Bad Request: Datos de entrada inválidos.
+- `401` - Unauthorized: Credenciales de autenticación no válida.
+- `403` - Forbidden: Prohibido el acceso al recurso.
+- `404` - Not Found: Recurso no encontrado.
 
 ---
 
