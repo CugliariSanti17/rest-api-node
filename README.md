@@ -188,6 +188,45 @@ npm run dev
 
 ---
 
+## Autenticación
+
+### Login
+
+- **POST** `/api/login`
+- **Descripcion:** Se enviará un email y una contraseña para controlar que el usuario este verificado. Si ambas son correctas se devolverá un token que permite al usuario acceder a aquellas rutas que necesitan autorización.
+- **Body (JSON):**
+
+```json
+[
+    {
+        "email": "x@x.com",
+        "password": "1234"
+    }
+]
+```
+
+-**Respuesta de ejemplo:**
+
+```json
+[
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
+    }
+]
+```
+---
+
+## ¿Cómo usar el token en POSTMAN?
+
+- **Pasos a seguir:**
+- `1-` Una vez obtenido el token dirigirnos al apartado de *Authorization*.
+- `2-` Seleccionar el tipo *Bearer Token*,
+- `3-` Copiar el token obtenido en el apartado *Token*.
+- `4-` Se agregará  automáticamente el token en el *header* de cada petición. 
+
+> ¡Listo! Ya podrás acceder a aquellos métodos http que requerian de una autorización.
+
+---
 ## Codigos de estado
 
 - `200` - OK: Operación exitosa
@@ -205,14 +244,21 @@ npm run dev
 ```
 src/
 ├── Controllers/
+│   ├── auth.controller.js
 │   └── products.controller.js
 │ 
 ├── Models/
 │   └── products.model.js
-└── Routes/
-    └── products.router.js
-
-```
+│ 
+│ 
+├── Routes/
+│   ├── auth.routes.js
+│   └── products.routes.js
+│ 
+└── Middelwares/
+    ├── auth.middleware.js
+``` 
+---
 
 ## Tecnologías utilizadas
 
@@ -224,3 +270,4 @@ src/
 - Firestore y Firebase
 - Dotenv
 - ES6 Modules
+- Vercel (deploy)
