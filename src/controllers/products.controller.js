@@ -75,7 +75,18 @@ import {validationResult} from 'express-validator';
 ];*/
 
 export const getAllProducts = async (req, res) => {
+  const { category } = req.query
+
   const products = await Model.getAllProducts()
+
+  if (category){
+    const productsFiltered = products.filter((product) =>{
+      return product.categoria.includes(category)
+    });
+    
+    return res.status(200).json(productsFiltered)
+  }
+
   res.json(products)
 };
 
