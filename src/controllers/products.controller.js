@@ -125,9 +125,9 @@ export const postProduct = async (req, res) => {
     return res.status(422).json({errores: result.array()})
   };
 
-  const { nombre, precio, descripcion, stock } = req.body;
+  const { nombre, precio, descripcion, stock, categoria } = req.body;
     
-  const newProduct = await Model.postProduct({nombre, precio, descripcion, stock});
+  const newProduct = await Model.postProduct({nombre, precio, descripcion, stock, categoria});
    
   res.status(201).json(newProduct);
 };
@@ -139,10 +139,10 @@ export const putProduct = async (req, res) => {
       return res.status(422).json({errores: result.array()})
   }
 
-  const { nombre, precio, descripcion, stock } = req.body
+  const { nombre, precio, descripcion, stock, categoria } = req.body
   const productId = req.params.id
 
-  const product = await Model.putProduct(productId, {nombre, precio, descripcion, stock})
+  const product = await Model.putProduct(productId, {nombre, precio, descripcion, stock, categoria})
 
   if(!product){
     res.status(404).json({error: 'Error al modificar el producto'})
