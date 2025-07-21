@@ -90,13 +90,29 @@ export const getAllProducts = async (req, res) => {
   res.json(products)
 };
 
+export const searchProductByName = async (req, res) =>{
+  const { name } = req.query
+
+  const products = await Model.getAllProducts()
+
+  if (!name) {
+  return res.status(400).json({ error: "Parámetro 'name' requerido" });
+}
+
+  const productsFiltered = products.filter((product) =>{
+    return product.nombre.toLowerCase().includes(name.toLowerCase())
+  });
+  
+  res.json(productsFiltered)
+};
+
 export const getProductById = async (req, res) => {
     const { id } = req.params
 
     const product = await Model.getProductById(id)
 
     if (!product) {
-        res.status(404).json({ error: 'Error al encontrar el producto.' })
+      return res.status(404).json({ error: 'Error al encontrar el producto.' })
     }
 
     res.json(product)

@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { getAllProducts, getProductById, postProduct, putProduct, deleteProduct } from '../controllers/products.controller.js';
+import { getAllProducts, getProductById, postProduct, putProduct, deleteProduct, searchProductByName } from '../controllers/products.controller.js';
 import { body } from 'express-validator';
 
 const router = Router()
@@ -14,6 +14,8 @@ const rules = [
 import { auth } from '../middlewares/auth.middleware.js';
 
 router.get('/products', auth, getAllProducts);
+
+router.get('/products/search', auth, searchProductByName);
 
 router.get('/products/:id', auth, getProductById);
 
