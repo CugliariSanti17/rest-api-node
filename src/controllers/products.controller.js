@@ -145,7 +145,7 @@ export const putProduct = async (req, res) => {
   const product = await Model.putProduct(productId, {nombre, precio, descripcion, stock, categoria})
 
   if(!product){
-    res.status(404).json({error: 'Error al modificar el producto'})
+    return res.status(404).json({error: 'Error al modificar el producto'})
   }
     
   res.json(product)
